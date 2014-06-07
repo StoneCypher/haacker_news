@@ -5,7 +5,64 @@
 
     <script type="text/javascript">
 
+
+
+
+
+      // Update this table to change your site.
+      // Everything else is automatic.
+
+      var SiteData = [
+
+        { title:'HippyVM', url:'http://hippyvm.com/123' },
+        { title:'HippyVM', url:'http://hippyvm.com/123' },
+        { title:'HippyVM', url:'http://hippyvm.com/123' },
+        { title:'HippyVM', url:'http://hippyvm.com/123' },
+        { title:'HippyVM', url:'http://hippyvm.com/123' }
+
+      ];
+
+      // Table complete!  Enjoy your site.
+
+
+
+
+
+      function sTC(N, T) {
+
+        if (N.hasOwnProperty('textContent')) {
+          N.textContent = T;
+        } else {
+          N.innerHTML = T;
+        }
+
+      }
+
       function makeSite() {
+
+        var cont = document.getElementById('content');
+        cont.innerHTML = '';
+
+        for (i in SiteData) {
+
+          var nLI  = document.createElement('li');
+          var nLIa = document.createElement('a');
+          var nLIs = document.createElement('span');
+          var nLIe = document.createElement('span');
+
+          nLIa.href      = SiteData[i].url;
+          nLIe.className = 'linkexpose';
+
+          sTC(nLIs, SiteData[i].title);
+          sTC(nLIe, SiteData[i].url);
+
+          nLIa.appendChild(nLIs);
+          nLIa.appendChild(nLIe);
+          nLI.appendChild(nLIa);
+
+          cont.appendChild(nLI);
+
+        }
 
       }
 
@@ -14,19 +71,32 @@
   	<link href='http://fonts.googleapis.com/css?family=Open+Sans:700,600,400,300' rel='stylesheet' type='text/css'>
     <style type="text/css">
 
-      html,body         { margin: 0; padding: 0; border: 0; font-family: 'Open Sans', sans-serif; }
-      body              { padding: 2em 3em; }
-      #centerer         { background-color: #f6f6ef; }
-      #headbanner       { background-color: #ff6600; }
-      #boxc             { display: inline-block; height: 1.4em; width: 1.4em; margin: 0.2em; border: 1px solid white; text-align: center; color: white; font-weight: 600; }
-      #title            { font-weight: 700; display: inline-block; padding-left: 0.5em; padding-right: 0.5em; }
+      html,body               { margin: 0; padding: 0; border: 0; font-family: 'Open Sans', sans-serif; }
+      body                    { padding: 2em 3em; }
+      #centerer               { background-color: #f6f6ef; }
+      #headbanner             { background-color: #ff6600; }
+      #boxc                   { display: inline-block; height: 1.4em; width: 1.4em; margin: 0.2em; border: 1px solid white; text-align: center; color: white; font-weight: 600; }
+      #title                  { font-weight: 700; display: inline-block; padding-left: 0.5em; padding-right: 0.5em; }
+
+      #headlinks              { display: inline; margin: 0; padding: 0; }
+      #headlinks li           { display: inline; margin: 0; padding: 0; }
+      #headlinks li+li:before { content: ' | '; }
+
+      .linkexpose             { color: #828282; font-size: 80%; display: inline-block; margin-left: 1em; }
+      .linkexpose:before      { content: '('; }
+      .linkexpose:after       { content: ')'; }
+
+      ol                      { margin: 0; padding: 1em 0 1em 3em; }
+      li+li                   { margin-top: 0.5em; }
+      a                       { color: black; text-decoration: none; }
+      a:hover                 { color: #008; }
 
     </style>
   </head>
 
-  <body><div id="centerer">
+  <body onload="makeSite();"><div id="centerer">
 
-    <div id="headbanner"><div><span id="boxc">C</span><span id="title">Haacker News</span><ul id="headlinks"></ul></div></div>
+    <div id="headbanner"><div><span id="boxc">C</span><span id="title">Haacker News</span><ul id="headlinks"><li>1</li><li>1</li><li>1</li></ul></div></div><ol id="content"></ol>
 
   </div></body>
 </html>
