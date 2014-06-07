@@ -14,11 +14,57 @@
 
       var SiteData = [
 
-        { title:'HippyVM', url:'http://hippyvm.com/123' },
-        { title:'HippyVM', url:'http://hippyvm.com/123' },
-        { title:'HippyVM', url:'http://hippyvm.com/123' },
-        { title:'HippyVM', url:'http://hippyvm.com/123' },
-        { title:'HippyVM', url:'http://hippyvm.com/123' }
+        { title:'HippyVM',                  url:'http://hippyvm.com/123' },
+        { title:'Blargle',                  url:'http://hippyvm.com/123' },
+        { title:'There should be examples', url:'http://hippyvm.com/123' },
+        { title:'I am bored',               url:'http://hippyvm.com/123' },
+        { title:'Bluh',                     url:'http://hippyvm.com/123' },
+        { title:'HippyVM',                  url:'http://hippyvm.com/123' },
+        { title:'Blargle',                  url:'http://hippyvm.com/123' },
+        { title:'There should be examples', url:'http://hippyvm.com/123' },
+        { title:'I am bored',               url:'http://hippyvm.com/123' },
+        { title:'Bluh',                     url:'http://hippyvm.com/123' },
+        { title:'HippyVM',                  url:'http://hippyvm.com/123' },
+        { title:'Blargle',                  url:'http://hippyvm.com/123' },
+        { title:'There should be examples', url:'http://hippyvm.com/123' },
+        { title:'I am bored',               url:'http://hippyvm.com/123' },
+        { title:'Bluh',                     url:'http://hippyvm.com/123' },
+        { title:'HippyVM',                  url:'http://hippyvm.com/123' },
+        { title:'Blargle',                  url:'http://hippyvm.com/123' },
+        { title:'There should be examples', url:'http://hippyvm.com/123' },
+        { title:'I am bored',               url:'http://hippyvm.com/123' },
+        { title:'Bluh',                     url:'http://hippyvm.com/123' },
+        { title:'HippyVM',                  url:'http://hippyvm.com/123' },
+        { title:'Blargle',                  url:'http://hippyvm.com/123' },
+        { title:'There should be examples', url:'http://hippyvm.com/123' },
+        { title:'I am bored',               url:'http://hippyvm.com/123' },
+        { title:'Bluh',                     url:'http://hippyvm.com/123' },
+        { title:'HippyVM',                  url:'http://hippyvm.com/123' },
+        { title:'Blargle',                  url:'http://hippyvm.com/123' },
+        { title:'There should be examples', url:'http://hippyvm.com/123' },
+        { title:'I am bored',               url:'http://hippyvm.com/123' },
+        { title:'Bluh',                     url:'http://hippyvm.com/123' },
+        { title:'HippyVM',                  url:'http://hippyvm.com/123' },
+        { title:'Blargle',                  url:'http://hippyvm.com/123' },
+        { title:'There should be examples', url:'http://hippyvm.com/123' },
+        { title:'I am bored',               url:'http://hippyvm.com/123' },
+        { title:'Bluh',                     url:'http://hippyvm.com/123' },
+        { title:'HippyVM',                  url:'http://hippyvm.com/123' },
+        { title:'Blargle',                  url:'http://hippyvm.com/123' },
+        { title:'There should be examples', url:'http://hippyvm.com/123' },
+        { title:'I am bored',               url:'http://hippyvm.com/123' },
+        { title:'Bluh',                     url:'http://hippyvm.com/123' }
+
+      ];
+
+      // And this table modifies the header links.
+
+      var HeadLinkData = [
+
+        { title:'articles',    url:'http://hippyvm.com/123' },
+        { title:'best of',     url:'http://hippyvm.com/123' },
+        { title:'ask',         url:'http://hippyvm.com/123' },
+        { title:'about cliff', url:'http://hippyvm.com/123' }
 
       ];
 
@@ -38,32 +84,38 @@
 
       }
 
-      function makeSite() {
+      function makeList(data, cont, hasExpose) {
 
-        var cont = document.getElementById('content');
+        if (hasExpose !== true) { hasExpose = false; }
         cont.innerHTML = '';
 
-        for (i in SiteData) {
+        for (i in data) {
 
           var nLI  = document.createElement('li');
           var nLIa = document.createElement('a');
           var nLIs = document.createElement('span');
-          var nLIe = document.createElement('span');
 
-          nLIa.href      = SiteData[i].url;
-          nLIe.className = 'linkexpose';
-
-          sTC(nLIs, SiteData[i].title);
-          sTC(nLIe, SiteData[i].url);
-
+          nLIa.href = data[i].url;
+          sTC(nLIs, data[i].title);
           nLIa.appendChild(nLIs);
-          nLIa.appendChild(nLIe);
-          nLI.appendChild(nLIa);
 
+          if (hasExpose) {
+            var nLIe = document.createElement('span');
+            nLIe.className = 'linkexpose';
+            sTC(nLIe, data[i].url);
+            nLIa.appendChild(nLIe);
+          }
+
+          nLI.appendChild(nLIa);
           cont.appendChild(nLI);
 
         }
 
+      }
+
+      function makeSite() {
+        makeList(SiteData,     document.getElementById('content'), true);
+        makeList(HeadLinkData, document.getElementById('headlinks'));
       }
 
     </script>
